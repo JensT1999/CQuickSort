@@ -37,10 +37,24 @@ static inline void swapUInts32(uint32_t *array, size_t index1, size_t index2);
 static inline void swapUInts64(uint64_t *array, size_t index1, size_t index2);
 static inline void swapSpecialStructs(char*, const size_t, size_t, size_t);
 
+static int (*getDefaultComparator(SortType)) (void*, void*);
+static int compareDoubles(void*, void*);
+static int compareFloats(void*, void*);
+static int compareInts(void*, void*);
+static int compareInts8(void*, void*);
+static int compareInts16(void*, void*);
+static int compareInts32(void*, void*);
+static int compareInts64(void*, void*);
+static int compareUInts8(void*, void*);
+static int compareUInts16(void*, void*);
+static int compareUInts32(void*, void*);
+static int compareUInts64(void*, void*);
+
 void quicksort(void *array, SortType type, const size_t byteSizeOfStruct,
     const size_t length, int (*cmp) (void*, void*)) {
-    if((array == NULL) || (length == 0) || (cmp == NULL)) return;
-    if((type == SPECIAL_STRUCT) && (byteSizeOfStruct == 0)) return;
+    if((array == NULL) || (length == 0)) return;
+    if((type == SPECIAL_STRUCT) && ((byteSizeOfStruct == 0) || (cmp == NULL))) return;
+    if(cmp == NULL) cmp = getDefaultComparator(type);
 
     quicksortIntern(array, type, byteSizeOfStruct, 0, length - 1, cmp);
 }
@@ -446,4 +460,113 @@ static inline void swapSpecialStructs(char *array, const size_t byteSizeOfStruct
     memcpy(buffer, (array + elementPosOne), byteSizeOfStruct);
     memcpy((array + elementPosOne), (array + elementPosTwo), byteSizeOfStruct);
     memcpy((array + elementPosTwo), buffer, byteSizeOfStruct);
+}
+
+// Default Comparators
+
+int (*getDefaultComparator(SortType type)) (void*, void*) {
+    switch (type)
+    {
+    case DOUBLE:
+        return &compareDoubles;
+    case FLOAT:
+        return &compareFloats;
+    case INT:
+        return &compareInts;
+    case INT8:
+        return &compareInts8;
+    case INT16:
+        return &compareInts16;
+    case INT32:
+        return &compareInts32;
+    case INT64:
+        return &compareInts64;
+    case UINT8:
+        return &compareUInts8;
+    case UINT16:
+        return &compareUInts16;
+    case UINT32:
+        return &compareUInts32;
+    case UINT64:
+        return &compareUInts64;
+    default:
+        exit(EXIT_FAILURE);
+    }
+}
+
+static int compareDoubles(void *input1, void *input2) {
+    const double d1Value = *((double* ) input1);
+    const double d2Value = *((double* ) input2);
+
+    return (d1Value < d2Value) ? -1 : (d1Value == d2Value) ? 0 : 1;
+}
+
+static int compareFloats(void *input1, void *input2) {
+    const float d1Value = *((float* ) input1);
+    const float d2Value = *((float* ) input2);
+
+    return (d1Value < d2Value) ? -1 : (d1Value == d2Value) ? 0 : 1;
+}
+
+static int compareInts(void *input1, void *input2) {
+    const int d1Value = *((int* ) input1);
+    const int d2Value = *((int* ) input2);
+
+    return (d1Value < d2Value) ? -1 : (d1Value == d2Value) ? 0 : 1;
+}
+
+static int compareInts8(void *input1, void *input2) {
+    const int8_t d1Value = *((int8_t* ) input1);
+    const int8_t d2Value = *((int8_t* ) input2);
+
+    return (d1Value < d2Value) ? -1 : (d1Value == d2Value) ? 0 : 1;
+}
+
+static int compareInts16(void *input1, void *input2) {
+    const int16_t d1Value = *((int16_t* ) input1);
+    const int16_t d2Value = *((int16_t* ) input2);
+
+    return (d1Value < d2Value) ? -1 : (d1Value == d2Value) ? 0 : 1;
+}
+
+static int compareInts32(void *input1, void *input2) {
+    const int32_t d1Value = *((int32_t* ) input1);
+    const int32_t d2Value = *((int32_t* ) input2);
+
+    return (d1Value < d2Value) ? -1 : (d1Value == d2Value) ? 0 : 1;
+}
+
+static int compareInts64(void *input1, void *input2) {
+    const int64_t d1Value = *((int64_t* ) input1);
+    const int64_t d2Value = *((int64_t* ) input2);
+
+    return (d1Value < d2Value) ? -1 : (d1Value == d2Value) ? 0 : 1;
+}
+
+static int compareUInts8(void *input1, void *input2) {
+    const uint8_t d1Value = *((uint8_t* ) input1);
+    const uint8_t d2Value = *((uint8_t* ) input2);
+
+    return (d1Value < d2Value) ? -1 : (d1Value == d2Value) ? 0 : 1;
+}
+
+static int compareUInts16(void *input1, void *input2) {
+    const uint16_t d1Value = *((uint16_t* ) input1);
+    const uint16_t d2Value = *((uint16_t* ) input2);
+
+    return (d1Value < d2Value) ? -1 : (d1Value == d2Value) ? 0 : 1;
+}
+
+static int compareUInts32(void *input1, void *input2) {
+    const uint32_t d1Value = *((uint32_t* ) input1);
+    const uint32_t d2Value = *((uint32_t* ) input2);
+
+    return (d1Value < d2Value) ? -1 : (d1Value == d2Value) ? 0 : 1;
+}
+
+static int compareUInts64(void *input1, void *input2) {
+    const uint64_t d1Value = *((uint64_t* ) input1);
+    const uint64_t d2Value = *((uint64_t* ) input2);
+
+    return (d1Value < d2Value) ? -1 : (d1Value == d2Value) ? 0 : 1;
 }
