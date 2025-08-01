@@ -61,7 +61,7 @@ int8_t comparePersons(void *p1, void *p2) {
 
 ### Contact
 
-If there are any questions please dont hesitate to contact me!
+If you have any questions, feel free to contact me!
 
 
 
