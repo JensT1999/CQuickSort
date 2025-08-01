@@ -37,7 +37,6 @@ typedef enum SortType {
  * @param cmp comparator for specific type, when NOT SPECIAL_STRUCT and NULL is inserted, a default comparator will
  * be used
  */
-void quicksort(void *array, SortType type, const size_t byteSizeOfStruct,
-     const size_t length, int (*cmp) (void*, void*));
+void quicksort(void *array, SortType type, const size_t byteSizeOfStruct, const int64_t length, int8_t (*cmp) (void*, void*));
 
 #endif

@@ -5,53 +5,53 @@ typedef enum ShiftDirection {
     RIGHT
 } ShiftDirection;
 
-static void quicksortIntern(void*, SortType, const size_t, const int64_t, const int64_t, int (*cmp) (void*, void*));
-static int64_t hoarePartition(void*, SortType, const size_t, const int64_t, const int64_t, int (*cmp) (void*, void*));
+static void quicksortIntern(void*, SortType, const size_t, const int64_t, const int64_t, int8_t (*cmp) (void*, void*));
+static int64_t hoarePartition(void*, SortType, const size_t, const int64_t, const int64_t, int8_t (*cmp) (void*, void*));
 
-static bool tryShift(void*, SortType, const size_t, int64_t*, const int64_t, int (*cmp) (void*, void*), ShiftDirection);
-static inline bool tryShiftDoubleType(double*, int64_t*, const double, int (*cmp) (void*, void*), ShiftDirection);
-static inline bool tryShiftFloatType(float*, int64_t*, const float, int (*cmp) (void*, void*), ShiftDirection);
-static inline bool tryShiftIntType(int*, int64_t*, const int, int (*cmp) (void*, void*), ShiftDirection);
-static inline bool tryShiftInt8Type(int8_t*, int64_t*, const int8_t, int (*cmp) (void*, void*), ShiftDirection);
-static inline bool tryShiftInt16Type(int16_t*, int64_t*, const int16_t, int (*cmp) (void*, void*), ShiftDirection);
-static inline bool tryShiftInt32Type(int32_t*, int64_t*, const int32_t, int (*cmp) (void*, void*), ShiftDirection);
-static inline bool tryShiftInt64Type(int64_t*, int64_t*, const int64_t, int (*cmp) (void*, void*), ShiftDirection);
-static inline bool tryShiftUInt8Type(uint8_t*, int64_t*, const uint8_t, int (*cmp) (void*, void*), ShiftDirection);
-static inline bool tryShiftUInt16Type(uint16_t*, int64_t*, const uint16_t, int (*cmp) (void*, void*), ShiftDirection);
-static inline bool tryShiftUInt32Type(uint32_t*, int64_t*, const uint32_t, int (*cmp) (void*, void*), ShiftDirection);
-static inline bool tryShiftUInt64Type(uint64_t*, int64_t*, const uint64_t, int (*cmp) (void*, void*), ShiftDirection);
-static inline bool tryShiftSpecialStruct(char*, int64_t*, const void*, const size_t, int (*cmp) (void*, void*),
+static bool tryShift(void*, SortType, const size_t, int64_t*, const int64_t, int8_t (*cmp) (void*, void*), ShiftDirection);
+static inline bool tryShiftDoubleType(double*, int64_t*, const double, int8_t (*cmp) (void*, void*), ShiftDirection);
+static inline bool tryShiftFloatType(float*, int64_t*, const float, int8_t (*cmp) (void*, void*), ShiftDirection);
+static inline bool tryShiftIntType(int*, int64_t*, const int, int8_t (*cmp) (void*, void*), ShiftDirection);
+static inline bool tryShiftInt8Type(int8_t*, int64_t*, const int8_t, int8_t (*cmp) (void*, void*), ShiftDirection);
+static inline bool tryShiftInt16Type(int16_t*, int64_t*, const int16_t, int8_t (*cmp) (void*, void*), ShiftDirection);
+static inline bool tryShiftInt32Type(int32_t*, int64_t*, const int32_t, int8_t (*cmp) (void*, void*), ShiftDirection);
+static inline bool tryShiftInt64Type(int64_t*, int64_t*, const int64_t, int8_t (*cmp) (void*, void*), ShiftDirection);
+static inline bool tryShiftUInt8Type(uint8_t*, int64_t*, const uint8_t, int8_t (*cmp) (void*, void*), ShiftDirection);
+static inline bool tryShiftUInt16Type(uint16_t*, int64_t*, const uint16_t, int8_t (*cmp) (void*, void*), ShiftDirection);
+static inline bool tryShiftUInt32Type(uint32_t*, int64_t*, const uint32_t, int8_t (*cmp) (void*, void*), ShiftDirection);
+static inline bool tryShiftUInt64Type(uint64_t*, int64_t*, const uint64_t, int8_t (*cmp) (void*, void*), ShiftDirection);
+static inline bool tryShiftSpecialStruct(char*, int64_t*, const void*, const size_t, int8_t (*cmp) (void*, void*),
 ShiftDirection);
 
-static void swap(void*, SortType, const size_t, size_t, size_t);
-static inline void swapDoubles(double*, size_t, size_t);
-static inline void swapFloats(float*, size_t, size_t);
-static inline void swapInts(int*, size_t, size_t);
-static inline void swapInts8(int8_t *array, size_t index1, size_t index2);
-static inline void swapInts16(int16_t *array, size_t index1, size_t index2);
-static inline void swapInts32(int32_t *array, size_t index1, size_t index2);
-static inline void swapInts64(int64_t *array, size_t index1, size_t index2);
-static inline void swapUInts8(uint8_t *array, size_t index1, size_t index2);
-static inline void swapUInts16(uint16_t *array, size_t index1, size_t index2);
-static inline void swapUInts32(uint32_t *array, size_t index1, size_t index2);
-static inline void swapUInts64(uint64_t *array, size_t index1, size_t index2);
-static inline void swapSpecialStructs(char*, const size_t, size_t, size_t);
+static void swap(void*, SortType, const size_t, int64_t, int64_t);
+static inline void swapDoubles(double*, int64_t, int64_t);
+static inline void swapFloats(float*, int64_t, int64_t);
+static inline void swapInts(int*, int64_t, int64_t);
+static inline void swapInts8(int8_t*, int64_t, int64_t);
+static inline void swapInts16(int16_t*, int64_t, int64_t);
+static inline void swapInts32(int32_t*, int64_t , int64_t);
+static inline void swapInts64(int64_t*, int64_t, int64_t);
+static inline void swapUInts8(uint8_t*, int64_t, int64_t);
+static inline void swapUInts16(uint16_t*, int64_t, int64_t);
+static inline void swapUInts32(uint32_t*, int64_t, int64_t);
+static inline void swapUInts64(uint64_t*, int64_t, int64_t);
+static inline void swapSpecialStructs(char*, const size_t, int64_t, int64_t);
 
-static int (*getDefaultComparator(SortType)) (void*, void*);
-static int compareDoubles(void*, void*);
-static int compareFloats(void*, void*);
-static int compareInts(void*, void*);
-static int compareInts8(void*, void*);
-static int compareInts16(void*, void*);
-static int compareInts32(void*, void*);
-static int compareInts64(void*, void*);
-static int compareUInts8(void*, void*);
-static int compareUInts16(void*, void*);
-static int compareUInts32(void*, void*);
-static int compareUInts64(void*, void*);
+static int8_t (*getDefaultComparator(SortType)) (void*, void*);
+static int8_t compareDoubles(void*, void*);
+static int8_t compareFloats(void*, void*);
+static int8_t compareInts(void*, void*);
+static int8_t compareInts8(void*, void*);
+static int8_t compareInts16(void*, void*);
+static int8_t compareInts32(void*, void*);
+static int8_t compareInts64(void*, void*);
+static int8_t compareUInts8(void*, void*);
+static int8_t compareUInts16(void*, void*);
+static int8_t compareUInts32(void*, void*);
+static int8_t compareUInts64(void*, void*);
 
 void quicksort(void *array, SortType type, const size_t byteSizeOfStruct,
-    const size_t length, int (*cmp) (void*, void*)) {
+    const int64_t length, int8_t (*cmp) (void*, void*)) {
     if((array == NULL) || (length == 0)) return;
     if((type == SPECIAL_STRUCT) && ((byteSizeOfStruct == 0) || (cmp == NULL))) return;
     if(cmp == NULL) cmp = getDefaultComparator(type);
@@ -59,8 +59,19 @@ void quicksort(void *array, SortType type, const size_t byteSizeOfStruct,
     quicksortIntern(array, type, byteSizeOfStruct, 0, length - 1, cmp);
 }
 
+/**
+ * @brief Recursively calls itself until startingIndex equals endingIndex,
+ * performing partitioning using the Hoare scheme along the way.
+ * @param array array to be sorted
+ * @param type type of array. Valid Types: DOUBLE, FLOAT, INT, INT8...INT64, UINT8...UINT64, SPECIAL_STRUCT
+ * @param byteSizeOfStruct necessary when sorting struct array, otherwise insert 0
+ * @param startingIndex the index from where the partition begins
+ * @param endingIndex the index where the partition ends
+ * @param cmp comparator for specific type, when NOT SPECIAL_STRUCT and NULL is inserted, a default comparator will
+ * be used
+ */
 static void quicksortIntern(void *array, SortType type, const size_t byteSizeOfStruct,
-    const int64_t startingIndex, const int64_t endingIndex, int (*cmp) (void*, void*)) {
+    const int64_t startingIndex, const int64_t endingIndex, int8_t (*cmp) (void*, void*)) {
     if(startingIndex < endingIndex) {
         const int64_t partitionIndex = hoarePartition(array, type, byteSizeOfStruct, startingIndex, endingIndex, cmp);
 
@@ -69,8 +80,22 @@ static void quicksortIntern(void *array, SortType type, const size_t byteSizeOfS
     }
 }
 
+/**
+ * @brief Used to partition and sort the underlying array.
+ * All elements smaller than the pivot element are placed on the left,
+ * and all elements greater than the pivot element are placed on the right.
+ * The first element will always be the pivot element.
+ * @param array array to be partitioned
+ * @param type type of array. Valid Types: DOUBLE, FLOAT, INT, INT8...INT64, UINT8...UINT64, SPECIAL_STRUCT
+ * @param byteSizeOfStruct necessary when sorting struct array, otherwise insert 0
+ * @param startingIndex the index from where the partition begins
+ * @param endingIndex the index where the partition ends
+ * @param cmp comparator for specific type, when NOT SPECIAL_STRUCT and NULL is inserted, a default comparator will
+ * be used
+ * @return partition index for next partition
+ */
 static int64_t hoarePartition(void *array, SortType type, const size_t byteSizeOfStruct,
-    const int64_t startingIndex, const int64_t endingIndex, int (*cmp) (void*, void*)) {
+    const int64_t startingIndex, const int64_t endingIndex, int8_t (*cmp) (void*, void*)) {
     const int64_t pivotIndex = startingIndex;
     int64_t pointerLeft = (startingIndex - 1);
     int64_t pointerRight = (endingIndex + 1);
@@ -96,13 +121,26 @@ static int64_t hoarePartition(void *array, SortType type, const size_t byteSizeO
     }
 }
 
+/**
+ * @brief Attempts to perform a shift of one of the two pointers used in the Hoare algorithm.
+ * @param array array to be partitioned
+ * @param type type of array. Valid Types: DOUBLE, FLOAT, INT, INT8...INT64, UINT8...UINT64, SPECIAL_STRUCT
+ * @param byteSizeOfStruct necessary when sorting struct array, otherwise insert 0
+ * @param ptrIndex index of left or right pointer
+ * @param pivotIndex index of pivot value/element
+ * @param cmp comparator for specific type, when NOT SPECIAL_STRUCT and NULL is inserted, a default comparator will
+ * be used
+ * @param shiftDirection direction of shift e.g. left Pointer -> performs "left shift", right pointer -> performs
+ * "right shift"
+ * @return true -> if pointer can move further, false -> if pointer can not move further
+ */
 static bool tryShift(void *array, SortType type, const size_t byteSizeOfStruct,
-    int64_t *ptrIndex, const int64_t pivotIndex, int (*cmp) (void*, void*),
+    int64_t *ptrIndex, const int64_t pivotIndex, int8_t (*cmp) (void*, void*),
     ShiftDirection shiftDirection) {
 
     if(shiftDirection == LEFT) {
         *ptrIndex += 1;
-    } else {
+    } else if(shiftDirection == RIGHT) {
         *ptrIndex -= 1;
     }
 
@@ -186,7 +224,7 @@ static bool tryShift(void *array, SortType type, const size_t byteSizeOfStruct,
 }
 
 static inline bool tryShiftDoubleType(double *array, int64_t *ptrIndex, const double pivotValue,
-    int (*cmp) (void*, void*), ShiftDirection shiftDirection) {
+    int8_t (*cmp) (void*, void*), ShiftDirection shiftDirection) {
     const double ptrCurrentValue = array[*ptrIndex];
 
     const bool result = (shiftDirection == LEFT) ? cmp((void*) &pivotValue, (void*) &ptrCurrentValue) > 0 :
@@ -196,7 +234,7 @@ static inline bool tryShiftDoubleType(double *array, int64_t *ptrIndex, const do
 }
 
 static inline bool tryShiftFloatType(float *array, int64_t *ptrIndex, const float pivotValue,
-    int (*cmp) (void*, void*), ShiftDirection shiftDirection) {
+    int8_t (*cmp) (void*, void*), ShiftDirection shiftDirection) {
     const float ptrCurrentValue = array[*ptrIndex];
 
     const bool result = (shiftDirection == LEFT) ? cmp((void*) &pivotValue, (void*) &ptrCurrentValue) > 0 :
@@ -206,7 +244,7 @@ static inline bool tryShiftFloatType(float *array, int64_t *ptrIndex, const floa
 }
 
 static inline bool tryShiftIntType(int *array, int64_t *ptrIndex, const int pivotValue,
-    int (*cmp) (void*, void*), ShiftDirection shiftDirection) {
+    int8_t (*cmp) (void*, void*), ShiftDirection shiftDirection) {
     const int ptrCurrentValue = array[*ptrIndex];
 
     const bool result = (shiftDirection == LEFT) ? cmp((void*) &pivotValue, (void*) &ptrCurrentValue) > 0 :
@@ -216,7 +254,7 @@ static inline bool tryShiftIntType(int *array, int64_t *ptrIndex, const int pivo
 }
 
 static inline bool tryShiftInt8Type(int8_t *array, int64_t *ptrIndex, const int8_t pivotValue,
-    int (*cmp) (void*, void*), ShiftDirection shiftDirection) {
+    int8_t (*cmp) (void*, void*), ShiftDirection shiftDirection) {
     const int8_t ptrCurrentValue = array[*ptrIndex];
 
     const bool result = (shiftDirection == LEFT) ? cmp((void*) &pivotValue, (void*) &ptrCurrentValue) > 0 :
@@ -226,7 +264,7 @@ static inline bool tryShiftInt8Type(int8_t *array, int64_t *ptrIndex, const int8
 }
 
 static inline bool tryShiftInt16Type(int16_t *array, int64_t *ptrIndex, const int16_t pivotValue,
-    int (*cmp) (void*, void*), ShiftDirection shiftDirection) {
+    int8_t (*cmp) (void*, void*), ShiftDirection shiftDirection) {
     const int16_t ptrCurrentValue = array[*ptrIndex];
 
     const bool result = (shiftDirection == LEFT) ? cmp((void*) &pivotValue, (void*) &ptrCurrentValue) > 0 :
@@ -236,7 +274,7 @@ static inline bool tryShiftInt16Type(int16_t *array, int64_t *ptrIndex, const in
 }
 
 static inline bool tryShiftInt32Type(int32_t *array, int64_t *ptrIndex, const int32_t pivotValue,
-    int (*cmp) (void*, void*), ShiftDirection shiftDirection) {
+    int8_t (*cmp) (void*, void*), ShiftDirection shiftDirection) {
     const int32_t ptrCurrentValue = array[*ptrIndex];
 
     const bool result = (shiftDirection == LEFT) ? cmp((void*) &pivotValue, (void*) &ptrCurrentValue) > 0 :
@@ -246,7 +284,7 @@ static inline bool tryShiftInt32Type(int32_t *array, int64_t *ptrIndex, const in
 }
 
 static inline bool tryShiftInt64Type(int64_t *array, int64_t *ptrIndex, const int64_t pivotValue,
-    int (*cmp) (void*, void*), ShiftDirection shiftDirection) {
+    int8_t (*cmp) (void*, void*), ShiftDirection shiftDirection) {
     const int64_t ptrCurrentValue = array[*ptrIndex];
 
     const bool result = (shiftDirection == LEFT) ? cmp((void*) &pivotValue, (void*) &ptrCurrentValue) > 0 :
@@ -256,7 +294,7 @@ static inline bool tryShiftInt64Type(int64_t *array, int64_t *ptrIndex, const in
 }
 
 static inline bool tryShiftUInt8Type(uint8_t *array, int64_t *ptrIndex, const uint8_t pivotValue,
-    int (*cmp) (void*, void*), ShiftDirection shiftDirection) {
+    int8_t (*cmp) (void*, void*), ShiftDirection shiftDirection) {
     const uint8_t ptrCurrentValue = array[*ptrIndex];
 
     const bool result = (shiftDirection == LEFT) ? cmp((void*) &pivotValue, (void*) &ptrCurrentValue) > 0 :
@@ -266,7 +304,7 @@ static inline bool tryShiftUInt8Type(uint8_t *array, int64_t *ptrIndex, const ui
 }
 
 static inline bool tryShiftUInt16Type(uint16_t *array, int64_t *ptrIndex, const uint16_t pivotValue,
-    int (*cmp) (void*, void*), ShiftDirection shiftDirection) {
+    int8_t (*cmp) (void*, void*), ShiftDirection shiftDirection) {
     const uint16_t ptrCurrentValue = array[*ptrIndex];
 
     const bool result = (shiftDirection == LEFT) ? cmp((void*) &pivotValue, (void*) &ptrCurrentValue) > 0 :
@@ -276,7 +314,7 @@ static inline bool tryShiftUInt16Type(uint16_t *array, int64_t *ptrIndex, const 
 }
 
 static inline bool tryShiftUInt32Type(uint32_t *array, int64_t *ptrIndex, const uint32_t pivotValue,
-    int (*cmp) (void*, void*), ShiftDirection shiftDirection) {
+    int8_t (*cmp) (void*, void*), ShiftDirection shiftDirection) {
     const uint32_t ptrCurrentValue = array[*ptrIndex];
 
     const bool result = (shiftDirection == LEFT) ? cmp((void*) &pivotValue, (void*) &ptrCurrentValue) > 0 :
@@ -286,7 +324,7 @@ static inline bool tryShiftUInt32Type(uint32_t *array, int64_t *ptrIndex, const 
 }
 
 static inline bool tryShiftUInt64Type(uint64_t *array, int64_t *ptrIndex, const uint64_t pivotValue,
-    int (*cmp) (void*, void*), ShiftDirection shiftDirection) {
+    int8_t (*cmp) (void*, void*), ShiftDirection shiftDirection) {
     const uint64_t ptrCurrentValue = array[*ptrIndex];
 
     const bool result = (shiftDirection == LEFT) ? cmp((void*) &pivotValue, (void*) &ptrCurrentValue) > 0 :
@@ -296,7 +334,7 @@ static inline bool tryShiftUInt64Type(uint64_t *array, int64_t *ptrIndex, const 
 }
 
 static inline bool tryShiftSpecialStruct(char *array, int64_t *ptrIndex, const void *pivotElement,
-    const size_t byteSizeOfStruct, int (*cmp) (void*, void*), ShiftDirection shiftDirection) {
+    const size_t byteSizeOfStruct, int8_t (*cmp) (void*, void*), ShiftDirection shiftDirection) {
     const size_t elementPos = (((size_t) *ptrIndex) * byteSizeOfStruct);
     const void *ptrCurrentElement = array + elementPos;
 
@@ -306,7 +344,16 @@ static inline bool tryShiftSpecialStruct(char *array, int64_t *ptrIndex, const v
     return result;
 }
 
-static void swap(void *array, SortType type, const size_t byteSizeOfStruct, size_t index1, size_t index2) {
+/**
+ * @brief Performs a swap of two elements in the array, provided they meet the conditions for
+ * swapping according to the Hoare algorithm.
+ * @param array array, where the swap happens
+ * @param type type of array. Valid Types: DOUBLE, FLOAT, INT, INT8...INT64, UINT8...UINT64, SPECIAL_STRUCT
+ * @param byteSizeOfStruct necessary when sorting struct array, otherwise insert 0
+ * @param index1 index of first element to be swapped
+ * @param index2 index of second element to be swapped
+ */
+static void swap(void *array, SortType type, const size_t byteSizeOfStruct, int64_t index1, int64_t index2) {
     switch (type) {
     case DOUBLE: {
         double *doubleArray = (double* ) array;
@@ -385,73 +432,73 @@ static void swap(void *array, SortType type, const size_t byteSizeOfStruct, size
     }
 }
 
-static inline void swapDoubles(double *array, size_t index1, size_t index2) {
+static inline void swapDoubles(double *array, int64_t index1, int64_t index2) {
     const double tempValueOne = array[index1];
     array[index1] = array[index2];
     array[index2] = tempValueOne;
 }
 
-static inline void swapFloats(float *array, size_t index1, size_t index2) {
+static inline void swapFloats(float *array, int64_t index1, int64_t index2) {
     const float tempValueOne = array[index1];
     array[index1] = array[index2];
     array[index2] = tempValueOne;
 }
 
-static inline void swapInts(int *array, size_t index1, size_t index2) {
+static inline void swapInts(int *array, int64_t index1, int64_t index2) {
     const int tempValueOne = array[index1];
     array[index1] = array[index2];
     array[index2] = tempValueOne;
 }
 
-static inline void swapInts8(int8_t *array, size_t index1, size_t index2) {
+static inline void swapInts8(int8_t *array, int64_t index1, int64_t index2) {
     const int8_t tempValueOne = array[index1];
     array[index1] = array[index2];
     array[index2] = tempValueOne;
 }
 
-static inline void swapInts16(int16_t *array, size_t index1, size_t index2) {
+static inline void swapInts16(int16_t *array, int64_t index1, int64_t index2) {
     const int16_t tempValueOne = array[index1];
     array[index1] = array[index2];
     array[index2] = tempValueOne;
 }
 
-static inline void swapInts32(int32_t *array, size_t index1, size_t index2) {
+static inline void swapInts32(int32_t *array, int64_t index1, int64_t index2) {
     const int32_t tempValueOne = array[index1];
     array[index1] = array[index2];
     array[index2] = tempValueOne;
 }
 
-static inline void swapInts64(int64_t *array, size_t index1, size_t index2) {
+static inline void swapInts64(int64_t *array, int64_t index1, int64_t index2) {
     const int64_t tempValueOne = array[index1];
     array[index1] = array[index2];
     array[index2] = tempValueOne;
 }
 
-static inline void swapUInts8(uint8_t *array, size_t index1, size_t index2) {
+static inline void swapUInts8(uint8_t *array, int64_t index1, int64_t index2) {
     const uint8_t tempValueOne = array[index1];
     array[index1] = array[index2];
     array[index2] = tempValueOne;
 }
 
-static inline void swapUInts16(uint16_t *array, size_t index1, size_t index2) {
+static inline void swapUInts16(uint16_t *array, int64_t index1, int64_t index2) {
     const uint16_t tempValueOne = array[index1];
     array[index1] = array[index2];
     array[index2] = tempValueOne;
 }
 
-static inline void swapUInts32(uint32_t *array, size_t index1, size_t index2) {
+static inline void swapUInts32(uint32_t *array, int64_t index1, int64_t index2) {
     const uint32_t tempValueOne = array[index1];
     array[index1] = array[index2];
     array[index2] = tempValueOne;
 }
 
-static inline void swapUInts64(uint64_t *array, size_t index1, size_t index2) {
+static inline void swapUInts64(uint64_t *array, int64_t index1, int64_t index2) {
     const uint64_t tempValueOne = array[index1];
     array[index1] = array[index2];
     array[index2] = tempValueOne;
 }
 
-static inline void swapSpecialStructs(char *array, const size_t byteSizeOfStruct, size_t index1, size_t index2) {
+static inline void swapSpecialStructs(char *array, const size_t byteSizeOfStruct, int64_t index1, int64_t index2) {
     char buffer[byteSizeOfStruct];
 
     const size_t elementPosOne = ((size_t) index1 * byteSizeOfStruct);
@@ -462,9 +509,12 @@ static inline void swapSpecialStructs(char *array, const size_t byteSizeOfStruct
     memcpy((array + elementPosTwo), buffer, byteSizeOfStruct);
 }
 
-// Default Comparators
-
-int (*getDefaultComparator(SortType type)) (void*, void*) {
+/**
+ * @brief Get the Default Comparator object.
+ * @param type type of array. Valid Types: DOUBLE, FLOAT, INT, INT8...INT64, UINT8...UINT64, SPECIAL_STRUCT
+ * @return function pointer to the default comparator
+ */
+int8_t (*getDefaultComparator(SortType type)) (void*, void*) {
     switch (type)
     {
     case DOUBLE:
@@ -494,77 +544,77 @@ int (*getDefaultComparator(SortType type)) (void*, void*) {
     }
 }
 
-static int compareDoubles(void *input1, void *input2) {
+static int8_t compareDoubles(void *input1, void *input2) {
     const double d1Value = *((double* ) input1);
     const double d2Value = *((double* ) input2);
 
     return (d1Value < d2Value) ? -1 : (d1Value == d2Value) ? 0 : 1;
 }
 
-static int compareFloats(void *input1, void *input2) {
+static int8_t compareFloats(void *input1, void *input2) {
     const float d1Value = *((float* ) input1);
     const float d2Value = *((float* ) input2);
 
     return (d1Value < d2Value) ? -1 : (d1Value == d2Value) ? 0 : 1;
 }
 
-static int compareInts(void *input1, void *input2) {
+static int8_t compareInts(void *input1, void *input2) {
     const int d1Value = *((int* ) input1);
     const int d2Value = *((int* ) input2);
 
     return (d1Value < d2Value) ? -1 : (d1Value == d2Value) ? 0 : 1;
 }
 
-static int compareInts8(void *input1, void *input2) {
+static int8_t compareInts8(void *input1, void *input2) {
     const int8_t d1Value = *((int8_t* ) input1);
     const int8_t d2Value = *((int8_t* ) input2);
 
     return (d1Value < d2Value) ? -1 : (d1Value == d2Value) ? 0 : 1;
 }
 
-static int compareInts16(void *input1, void *input2) {
+static int8_t compareInts16(void *input1, void *input2) {
     const int16_t d1Value = *((int16_t* ) input1);
     const int16_t d2Value = *((int16_t* ) input2);
 
     return (d1Value < d2Value) ? -1 : (d1Value == d2Value) ? 0 : 1;
 }
 
-static int compareInts32(void *input1, void *input2) {
+static int8_t compareInts32(void *input1, void *input2) {
     const int32_t d1Value = *((int32_t* ) input1);
     const int32_t d2Value = *((int32_t* ) input2);
 
     return (d1Value < d2Value) ? -1 : (d1Value == d2Value) ? 0 : 1;
 }
 
-static int compareInts64(void *input1, void *input2) {
+static int8_t compareInts64(void *input1, void *input2) {
     const int64_t d1Value = *((int64_t* ) input1);
     const int64_t d2Value = *((int64_t* ) input2);
 
     return (d1Value < d2Value) ? -1 : (d1Value == d2Value) ? 0 : 1;
 }
 
-static int compareUInts8(void *input1, void *input2) {
+static int8_t compareUInts8(void *input1, void *input2) {
     const uint8_t d1Value = *((uint8_t* ) input1);
     const uint8_t d2Value = *((uint8_t* ) input2);
 
     return (d1Value < d2Value) ? -1 : (d1Value == d2Value) ? 0 : 1;
 }
 
-static int compareUInts16(void *input1, void *input2) {
+static int8_t compareUInts16(void *input1, void *input2) {
     const uint16_t d1Value = *((uint16_t* ) input1);
     const uint16_t d2Value = *((uint16_t* ) input2);
 
     return (d1Value < d2Value) ? -1 : (d1Value == d2Value) ? 0 : 1;
 }
 
-static int compareUInts32(void *input1, void *input2) {
+static int8_t compareUInts32(void *input1, void *input2) {
     const uint32_t d1Value = *((uint32_t* ) input1);
     const uint32_t d2Value = *((uint32_t* ) input2);
 
     return (d1Value < d2Value) ? -1 : (d1Value == d2Value) ? 0 : 1;
 }
 
-static int compareUInts64(void *input1, void *input2) {
+static int8_t compareUInts64(void *input1, void *input2) {
     const uint64_t d1Value = *((uint64_t* ) input1);
     const uint64_t d2Value = *((uint64_t* ) input2);
 
