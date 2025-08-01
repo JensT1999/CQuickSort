@@ -21,8 +21,8 @@ In addition, it is possible to sort arrays of arbitrary structs.
 
 ### Preparation:
 
-Please note that the algorithm is written in C99.\n
-Copy both files 'quicksort.h' and 'quicksort.c' into your project. After that include the header 'quicksort.h'.\n
+Please note that the algorithm is written in C99.<br>
+Copy both files 'quicksort.h' and 'quicksort.c' into your project. After that include the header 'quicksort.h'.<br>
 -> #include "quicksort.h"
 
 ### Calling:
@@ -70,7 +70,7 @@ void sortPersonArrayDemo() {
 
     for(int i = 0; i < 50; i++) {
         Person *personPtr = &(arrayOfPersons[i]);
-        printf("Alter: %d\n", personPtr->age);
+        printf("Age: %d\n", personPtr->age);
     }
 }
 
