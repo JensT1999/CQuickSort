@@ -510,8 +510,8 @@ static inline void swapSpecialStructs(char *array, const size_t byteSizeOfStruct
 }
 
 /**
- * @brief Get the Default Comparator object.
- * @param type type of array. Valid Types: DOUBLE, FLOAT, INT, INT8...INT64, UINT8...UINT64, SPECIAL_STRUCT
+ * @brief Get the default comparator function pointer.
+ * @param type type of array. Valid Types: DOUBLE, FLOAT, INT, INT8...INT64, UINT8...UINT64
  * @return function pointer to the default comparator
  */
 int8_t (*getDefaultComparator(SortType type)) (void*, void*) {
