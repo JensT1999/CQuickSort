@@ -14,7 +14,7 @@ In addition, it is possible to sort arrays of arbitrary structs.
 
 ### In addition:
 
-- Allows custom comparator funtions for specialized sorting needs
+- Allows custom comparator functions for specialized sorting needs
 
 ## Usage
 
@@ -31,9 +31,9 @@ You can call a quicksort like this:
 	quicksort(ARRAY, TYPE_OF_ARRAY, BYTESIZEOFSTRUCT, ARRAY_LENGTH, COMPARATOR);
 
 Please note:
-- BYTESIZEOFSTRUCT is only necessary when your trying to sort an array of structs.
-- Also when sorting structs you have to point on a comparator function as function pointer.
-- COMPARATOR can be NULL (NOT when TYPE_OF_ARRAY equals SPECIAL_STRUCT) -> if so a default comparator is provided.
+- BYTESIZEOFSTRUCT is only necessary when you're trying to sort an array of structs
+- When sorting structs, you must pass a comparator function pointer
+- COMPARATOR can be NULL (NOT when TYPE_OF_ARRAY equals SPECIAL_STRUCT) -> in that case, a default comparator will be used
 
 ### Examples
 
