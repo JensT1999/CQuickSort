@@ -39,18 +39,12 @@ Please note:
 
 1. Sorting a DOUBLE array:
 
-	double arr[100] = {...};
-    	quicksort(arr, DOUBLE, 0, 100, NULL);
+	double[10] array  = { ... };
+	quicksort(array, DOUBLE, 0, 10, NULL);
 
 2. Sorting a SPECIAL_STRUCT array with comparator:
 
-    	Person *arrayOfPersons = malloc(100 * sizeof(Person));
-
-    	for(int i = 0; i < 100; i++) {
-        	Person *personPtr = &(arrayOfPersons[i]);
-        	personPtr->age = rand() % 60 + 1;
-    	}
-
+	Person *arrayOfPersons = ...;
     	quicksort(arrayOfPersons, SPECIAL_STRUCT, sizeof(Person), 100, &comparePersons);
 
     	int8_t comparePersons(void *p1, void *p2) {
