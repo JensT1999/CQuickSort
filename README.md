@@ -46,16 +46,18 @@ quicksort(array, DOUBLE, 0, 10, NULL);
 
 2. Sorting a SPECIAL_STRUCT array with comparator:
 
-	Person *arrayOfPersons = ...;
-    	quicksort(arrayOfPersons, SPECIAL_STRUCT, sizeof(Person), 100, &comparePersons);
+```c
+Person *arrayOfPersons = ...;
+quicksort(arrayOfPersons, SPECIAL_STRUCT, sizeof(Person), 100, &comparePersons);
 
-    	int8_t comparePersons(void *p1, void *p2) {
-        	const Person *person1 = (Person* ) p1;
-        	const Person *person2 = (Person* ) p2;
+int8_t comparePersons(void *p1, void *p2) {
+	const Person *person1 = (Person* ) p1;
+       	const Person *person2 = (Person* ) p2;
 
-        	return (person1->age < person2->age) ? 1 :
-            	(person1->age == person2->age) ? 0 : -1;
-    	}
+        return (person1->age < person2->age) ? 1 :
+           (person1->age == person2->age) ? 0 : -1;
+}
+```
 
 ### Contact
 
