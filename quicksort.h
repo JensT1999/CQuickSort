@@ -7,6 +7,8 @@
 #include <stdlib.h>
 #include <string.h>
 
+#include <stdio.h>
+
 typedef enum SortType {
     DOUBLE,
     FLOAT,
@@ -19,6 +21,7 @@ typedef enum SortType {
     UINT16,
     UINT32,
     UINT64,
+    CHARPTR_ARRAY,
     SPECIAL_STRUCT
 } SortType;
 
@@ -38,5 +41,21 @@ typedef enum SortType {
  * be used
  */
 void quicksort(void *array, SortType type, const size_t byteSizeOfStruct, const int64_t length, int8_t (*cmp) (void*, void*));
+
+// Byte sizes
+
+#define SIZE_OF_DOUBLE sizeof(double)
+#define SIZE_OF_FLOAT sizeof(float)
+#define SIZE_OF_INT sizeof(int)
+#define SIZE_OF_INT8 sizeof(int8_t)
+#define SIZE_OF_INT16 sizeof(int16_t)
+#define SIZE_OF_INT32 sizeof(int32_t)
+#define SIZE_OF_INT64 sizeof(int64_t)
+#define SIZE_OF_UINT8 sizeof(uint8_t)
+#define SIZE_OF_UINT16 sizeof(uint16_t)
+#define SIZE_OF_UINT32 sizeof(uint32_t)
+#define SIZE_OF_UINT64 sizeof(uint64_t)
+#define SIZE_OF_CHAR_PTR sizeof(char*)
+
 
 #endif
