@@ -74,9 +74,9 @@ void sortPersonArrayDemo() {
     }
 }
 
-int8_t comparePersons(void *p1, void *p2) {
-    const Person *person1 = (Person* ) p1;
-    const Person *person2 = (Person* ) p2;
+int8_t comparePersons(void *pivotElement, void *currentPtrElement) {
+    const Person *person1 = (Person* ) pivotElement;
+    const Person *person2 = (Person* ) currentPtrElement;
 
     return (person1->age < person2->age) ? -1 :
         (person1->age == person2->age) ? 0 : 1;
