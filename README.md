@@ -35,5 +35,50 @@ Please note:
 - Also when sorting structs you have to point on a comparator function as function pointer.
 - COMPARATOR can be NULL (NOT when TYPE_OF_ARRAY equals SPECIAL_STRUCT) -> if so a default comparator is provided.
 
+### Examples
 
+1. Sorting a DOUBLE array:
+
+    double arr[100];
+    for(int i = 0; i < 100; i++) {
+        const double randDouble = (double) (rand() % 1000 + 1);
+        arr[i] = randDouble;
+    }
+
+    quicksort(arr, DOUBLE, 0, 100, NULL);
+
+2. Sorting a SPECIAL_STRUCT array with comparator:
+
+    Person *arrayOfPersons = malloc(100 * sizeof(Person));
+
+    for(int i = 0; i < 100; i++) {
+        Person *personPtr = &(arrayOfPersons[i]);
+        personPtr->age = rand() % 60 + 1;
+    }
+
+    quicksort(arrayOfPersons, SPECIAL_STRUCT, sizeof(Person), 100, &comparePersons);
+
+    int8_t comparePersons(void *p1, void *p2) {
+        const Person *person1 = (Person* ) p1;
+        const Person *person2 = (Person* ) p2;
+
+        return (person1->age < person2->age) ? 1 :
+            (person1->age == person2->age) ? 0 : -1;
+    }
+
+### Contact
+
+If there are any questions please dont hesitate to contact me!
+
+
+
+
+
+
+	
+    
+   
+
+   
+   
 
