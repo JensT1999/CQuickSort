@@ -39,8 +39,10 @@ Please note:
 
 1. Sorting a DOUBLE array:
 
-	double[10] array  = { ... };
-	quicksort(array, DOUBLE, 0, 10, NULL);
+```c
+double[10] array  = { ... };
+quicksort(array, DOUBLE, 0, 10, NULL);
+```
 
 2. Sorting a SPECIAL_STRUCT array with comparator:
 
