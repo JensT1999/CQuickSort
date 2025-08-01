@@ -84,11 +84,11 @@ static int64_t hoarePartition(char *array, SortType type, const size_t byteSizeO
 
     while(true) {
         do {
-            pointerLeftMoving = tryShift(array, type, byteSizeOfStruct, &pointerLeft, pivotIndex, cmp, LEFT);
+            pointerLeftMoving = tryShift(array, type, byteSizeOfStruct, &pointerLeft, pivotIndex, cmp, RIGHT);
         } while(pointerLeftMoving);
 
         do {
-            pointerRightMoving = tryShift(array, type, byteSizeOfStruct, &pointerRight, pivotIndex, cmp, RIGHT);
+            pointerRightMoving = tryShift(array, type, byteSizeOfStruct, &pointerRight, pivotIndex, cmp, LEFT);
         } while(pointerRightMoving);
 
         if(pointerLeft >= pointerRight)
@@ -117,9 +117,9 @@ static bool tryShift(char *array, SortType type, const size_t byteSizeOfStruct,
     int64_t *ptrIndex, const int64_t pivotIndex, int8_t (*cmp) (void*, void*),
     ShiftDirection shiftDirection) {
 
-    if(shiftDirection == LEFT) {
+    if(shiftDirection == RIGHT) {
         *ptrIndex += 1;
-    } else if(shiftDirection == RIGHT) {
+    } else if(shiftDirection == LEFT) {
         *ptrIndex -= 1;
     }
 
@@ -225,7 +225,7 @@ static inline bool tryShiftPointer(char *array, int64_t *ptrIndex, const void *p
     const size_t elementPos = (((size_t) *ptrIndex) * byteSize);
     const void* ptrCurrentElement = array + elementPos;
 
-    const bool result = (shiftDirection == LEFT) ? cmp((void*) pivotElement, (void*) ptrCurrentElement) > 0 :
+    const bool result = (shiftDirection == RIGHT) ? cmp((void*) pivotElement, (void*) ptrCurrentElement) > 0 :
         cmp((void*) pivotElement, (void*) ptrCurrentElement) < 0;
 
     return result;
@@ -438,8 +438,8 @@ static int8_t compareUInts64(void *pivotPtr, void *compareElementPtr) {
 }
 
 static int8_t compareCharPtrs(void *pivotPtr, void *compareElementPtr) {
-    const char **pivotElement = (char** ) pivotPtr;
-    const char **comparedElement = (char** ) compareElementPtr;
+    char **pivotElement = (char** ) pivotPtr;
+    char **comparedElement = (char** ) compareElementPtr;
 
     const int comparedValue = strcmp(*pivotElement, *comparedElement);
     return (comparedValue < 0) ? -1 : (comparedValue == 0) ? 0 : 1;
