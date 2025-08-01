@@ -39,12 +39,7 @@ Please note:
 
 1. Sorting a DOUBLE array:
 
-	double arr[100];
-    	for(int i = 0; i < 100; i++) {
-        	const double randDouble = (double) (rand() % 1000 + 1);
-        	arr[i] = randDouble;
-    	}
-
+	double arr[100] = {...};
     	quicksort(arr, DOUBLE, 0, 100, NULL);
 
 2. Sorting a SPECIAL_STRUCT array with comparator:
